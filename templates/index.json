@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "gh_hero": {
+      "type": "gh-hero",
+      "settings": {
+        "cta_label": "Shop Our Soap",
+        "cta_link": "shopify://collections/all"
+      }
+    },
+    "gh_trust_bar": {
+      "type": "gh-trust-bar",
+      "settings": {}
+    },
+    "gh_why": {
+      "type": "gh-why",
+      "settings": {}
+    },
+    "gh_ingredients": {
+      "type": "gh-ingredients",
+      "settings": {}
+    },
+    "gh_reviews": {
+      "type": "gh-reviews",
+      "settings": {}
+    },
+    "gh_cta_banner": {
+      "type": "gh-cta-banner",
+      "settings": {
+        "cta_label": "Shop Our Soap",
+        "cta_link": "shopify://collections/all"
+      }
+    }
+  },
+  "order": [
+    "gh_hero",
+    "gh_trust_bar",
+    "gh_why",
+    "gh_ingredients",
+    "gh_reviews",
+    "gh_cta_banner"
+  ]
+}

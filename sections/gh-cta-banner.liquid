@@ -1,0 +1,40 @@
+<section class="gh-cta-banner">
+  <div class="gh-cta-banner__bg" style="background-image: url('{{ 'background-linen.png' | asset_url }}');"></div>
+  <div class="gh-cta-banner__overlay"></div>
+
+  <div class="gh-cta-banner__content">
+    <span class="gh-cta-banner__eyebrow gh-fade-up">Ancient Remedies. Modern Glow.</span>
+    <h2 class="gh-cta-banner__heading gh-fade-up gh-stagger-1">Ready to Glow?</h2>
+    <p class="gh-cta-banner__subtext gh-fade-up gh-stagger-2">
+      Join over 10,000 customers who've discovered the power of plant-based brightening. Handcrafted in small batches. Made with love.
+    </p>
+    <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="gh-btn gh-fade-up gh-stagger-3">
+      {{ section.settings.cta_label | default: 'Shop Our Soap' }}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GH CTA Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button Text",
+      "default": "Shop Our Soap"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "GH CTA Banner"
+    }
+  ]
+}
+{% endschema %}

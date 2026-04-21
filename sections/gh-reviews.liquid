@@ -1,0 +1,108 @@
+<section class="gh-reviews">
+  <div class="gh-reviews__header">
+    <span class="gh-section-eyebrow gh-fade-up">Real Results</span>
+    <h2 class="gh-section-title gh-fade-up gh-stagger-1">What Our Customers Say</h2>
+  </div>
+
+  <div class="gh-reviews__track-wrap">
+    <div class="gh-reviews__track" id="gh-reviews-track" role="list">
+
+      <article class="gh-review-card" role="listitem">
+        <div class="gh-review-stars" aria-label="5 out of 5 stars">
+          {% for i in (1..5) %}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1l1.5 4.5H14l-4 3 1.5 4.5L8 10.5 4.5 13 6 8.5l-4-3h4.5L8 1z"/>
+            </svg>
+          {% endfor %}
+        </div>
+        <p class="gh-review-text">"I've been using this for 3 weeks and my dark spots are already visibly lighter. My skin has this natural glow I haven't had in years. Absolutely in love."</p>
+        <div class="gh-review-meta">
+          <span class="gh-review-author">Amara J.</span>
+          <span class="gh-review-badge">Verified Buyer</span>
+        </div>
+      </article>
+
+      <article class="gh-review-card" role="listitem">
+        <div class="gh-review-stars" aria-label="5 out of 5 stars">
+          {% for i in (1..5) %}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1l1.5 4.5H14l-4 3 1.5 4.5L8 10.5 4.5 13 6 8.5l-4-3h4.5L8 1z"/>
+            </svg>
+          {% endfor %}
+        </div>
+        <p class="gh-review-text">"I was skeptical but this soap really works. My skin feels smoother, my acne scars are fading, and it smells incredible. The lather is so rich and luxurious."</p>
+        <div class="gh-review-meta">
+          <span class="gh-review-author">Marcus T.</span>
+          <span class="gh-review-badge">Verified Buyer</span>
+        </div>
+      </article>
+
+      <article class="gh-review-card" role="listitem">
+        <div class="gh-review-stars" aria-label="5 out of 5 stars">
+          {% for i in (1..5) %}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1l1.5 4.5H14l-4 3 1.5 4.5L8 10.5 4.5 13 6 8.5l-4-3h4.5L8 1z"/>
+            </svg>
+          {% endfor %}
+        </div>
+        <p class="gh-review-text">"I have super sensitive skin and this is the only soap that doesn't irritate me. My hyperpigmentation from old breakouts has lightened so much in 5 weeks!"</p>
+        <div class="gh-review-meta">
+          <span class="gh-review-author">Priya R.</span>
+          <span class="gh-review-badge">Verified Buyer</span>
+        </div>
+      </article>
+
+      <article class="gh-review-card" role="listitem">
+        <div class="gh-review-stars" aria-label="5 out of 5 stars">
+          {% for i in (1..5) %}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1l1.5 4.5H14l-4 3 1.5 4.5L8 10.5 4.5 13 6 8.5l-4-3h4.5L8 1z"/>
+            </svg>
+          {% endfor %}
+        </div>
+        <p class="gh-review-text">"The 3-bar bundle was the best purchase I've made this year. Enough for my whole family. Everyone's skin looks more even and glowy. Will definitely reorder."</p>
+        <div class="gh-review-meta">
+          <span class="gh-review-author">Sofia M.</span>
+          <span class="gh-review-badge">Verified Buyer</span>
+        </div>
+      </article>
+
+      <article class="gh-review-card" role="listitem">
+        <div class="gh-review-stars" aria-label="5 out of 5 stars">
+          {% for i in (1..5) %}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 1l1.5 4.5H14l-4 3 1.5 4.5L8 10.5 4.5 13 6 8.5l-4-3h4.5L8 1z"/>
+            </svg>
+          {% endfor %}
+        </div>
+        <p class="gh-review-text">"I've tried countless brightening products. Nothing came close to this. After 6 weeks my skin tone is the most even it's been in my adult life. Phenomenal."</p>
+        <div class="gh-review-meta">
+          <span class="gh-review-author">David K.</span>
+          <span class="gh-review-badge">Verified Buyer</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="gh-reviews__dots" role="tablist" aria-label="Reviews navigation">
+    <button class="gh-reviews__dot active" role="tab" aria-label="Review 1" aria-selected="true"></button>
+    <button class="gh-reviews__dot" role="tab" aria-label="Review 2" aria-selected="false"></button>
+    <button class="gh-reviews__dot" role="tab" aria-label="Review 3" aria-selected="false"></button>
+    <button class="gh-reviews__dot" role="tab" aria-label="Review 4" aria-selected="false"></button>
+    <button class="gh-reviews__dot" role="tab" aria-label="Review 5" aria-selected="false"></button>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GH Reviews Carousel",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "GH Reviews Carousel"
+    }
+  ]
+}
+{% endschema %}

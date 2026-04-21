@@ -1,0 +1,13 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "gh-footer": {
+      "type": "gh-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "gh-footer"
+  ]
+}

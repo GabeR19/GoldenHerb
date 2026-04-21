@@ -1,0 +1,1097 @@
+/* =============================================================
+   Golden Herb Co. — Brand Styles
+   ============================================================= */
+
+/* Design Tokens */
+:root {
+  --deep-earth: #2C2418;
+  --gold: #C4952A;
+  --sage: #6B7F5E;
+  --cream: #F7F3EC;
+  --terra: #B87B4B;
+  --body-text: #3D3D3D;
+  --muted: #8A8A8A;
+  --subtle-bg: #F0EBE1;
+  --divider: #D9D0C1;
+  --error: #C45A4A;
+  --white: #FFFFFF;
+
+  --shadow: 0 4px 20px rgba(44, 36, 24, 0.08);
+  --shadow-hover: 0 8px 30px rgba(44, 36, 24, 0.14);
+  --radius-card: 8px;
+  --radius-btn: 24px;
+
+  --max-width: 1200px;
+  --section-padding: 80px;
+
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Nunito Sans', system-ui, sans-serif;
+  --font-accent: 'Josefin Sans', system-ui, sans-serif;
+}
+
+/* Global Overrides */
+body {
+  font-family: var(--font-body);
+  color: var(--body-text);
+  background-color: var(--cream);
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--deep-earth);
+}
+
+/* =============================================================
+   Loading Screen
+   ============================================================= */
+#gh-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#gh-loading-screen.gh-loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.gh-loader-inner {
+  text-align: center;
+  animation: gh-fade-in 0.6s ease forwards;
+}
+
+.gh-loader-logo {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--deep-earth);
+  letter-spacing: 0.05em;
+}
+
+.gh-loader-tagline {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+@keyframes gh-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #gh-loading-screen { display: none !important; }
+}
+
+/* =============================================================
+   Custom Cursor Trail
+   ============================================================= */
+#gh-cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #gh-cursor { opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #gh-cursor { display: none; }
+}
+
+/* =============================================================
+   Back to Top
+   ============================================================= */
+#gh-back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 500;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-hover);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s ease;
+}
+
+#gh-back-to-top.gh-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#gh-back-to-top:hover {
+  background: var(--deep-earth);
+}
+
+/* =============================================================
+   Hero Section
+   ============================================================= */
+.gh-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(ellipse at 60% 50%, #ede5d4 0%, var(--cream) 70%);
+  overflow: hidden;
+  position: relative;
+}
+
+.gh-hero__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+
+.gh-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.gh-hero__eyebrow {
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.gh-hero__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 600;
+  color: var(--deep-earth);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.gh-hero__subheading {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--body-text);
+  line-height: 1.6;
+  max-width: 440px;
+  margin: 0;
+}
+
+.gh-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--gold);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-btn);
+  text-decoration: none;
+  width: fit-content;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 16px rgba(196, 149, 42, 0.35);
+}
+
+.gh-hero__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(196, 149, 42, 0.45);
+  background: #b5861f;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.gh-hero__trust {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.gh-hero__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--body-text);
+  letter-spacing: 0.02em;
+}
+
+.gh-hero__trust-item svg {
+  color: var(--sage);
+  flex-shrink: 0;
+}
+
+.gh-hero__image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.gh-hero__image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+  animation: gh-float 3s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(44, 36, 24, 0.18));
+}
+
+@keyframes gh-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-hero__image { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .gh-hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2.5rem;
+    padding: 5rem 1.5rem;
+  }
+  .gh-hero__subheading { max-width: 100%; }
+  .gh-hero__trust { justify-content: center; }
+  .gh-hero__cta { align-self: center; }
+  .gh-hero__image-wrap { order: -1; }
+  .gh-hero__image { max-width: 320px; }
+}
+
+/* =============================================================
+   Trust Bar
+   ============================================================= */
+.gh-trust-bar {
+  background: var(--subtle-bg);
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+}
+
+.gh-trust-bar__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.gh-trust-bar__counter {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--deep-earth);
+  text-align: center;
+}
+
+.gh-trust-bar__counter span {
+  color: var(--gold);
+}
+
+.gh-trust-bar__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  justify-content: center;
+}
+
+.gh-trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--body-text);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.gh-trust-badge svg {
+  color: var(--sage);
+  flex-shrink: 0;
+}
+
+/* =============================================================
+   Why Golden Herb
+   ============================================================= */
+.gh-why {
+  padding: var(--section-padding) 2rem;
+  background: var(--white);
+}
+
+.gh-why__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.gh-section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.gh-section-eyebrow {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.gh-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  color: var(--deep-earth);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.gh-why__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.gh-card {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid var(--divider);
+}
+
+.gh-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.gh-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--subtle-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  color: var(--gold);
+}
+
+.gh-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--deep-earth);
+  margin: 0 0 0.75rem;
+}
+
+.gh-card__text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--body-text);
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .gh-why__grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gh-why__grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .gh-card { padding: 2rem 1.5rem; }
+}
+
+/* =============================================================
+   Ingredient Spotlight
+   ============================================================= */
+.gh-ingredients {
+  padding: var(--section-padding) 2rem;
+  background: var(--cream);
+}
+
+.gh-ingredients__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.gh-ingredients__image-wrap {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-hover);
+}
+
+.gh-ingredients__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gh-ingredients__image-wrap:hover .gh-ingredients__image {
+  transform: scale(1.03);
+}
+
+.gh-ingredients__content { display: flex; flex-direction: column; gap: 2rem; }
+
+.gh-ingredient-card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.gh-ingredient-card.gh-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.gh-ingredient-card:nth-child(1) { transition-delay: 0s; }
+.gh-ingredient-card:nth-child(2) { transition-delay: 0.1s; }
+.gh-ingredient-card:nth-child(3) { transition-delay: 0.2s; }
+.gh-ingredient-card:nth-child(4) { transition-delay: 0.3s; }
+.gh-ingredient-card:nth-child(5) { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-ingredient-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.gh-ingredient-number {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.gh-ingredient-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--deep-earth);
+  margin: 0 0 0.3rem;
+}
+
+.gh-ingredient-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--body-text);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .gh-ingredients__inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* =============================================================
+   Reviews Carousel
+   ============================================================= */
+.gh-reviews {
+  padding: var(--section-padding) 0;
+  background: var(--subtle-bg);
+  overflow: hidden;
+}
+
+.gh-reviews__header {
+  text-align: center;
+  padding: 0 2rem;
+  margin-bottom: 3rem;
+}
+
+.gh-reviews__track-wrap {
+  position: relative;
+  padding: 0 2rem 2rem;
+}
+
+.gh-reviews__track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 1rem;
+  scroll-padding-left: 2rem;
+}
+
+.gh-reviews__track::-webkit-scrollbar { display: none; }
+
+.gh-review-card {
+  flex: 0 0 340px;
+  scroll-snap-align: start;
+  background: var(--white);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gh-review-stars {
+  display: flex;
+  gap: 3px;
+  color: var(--gold);
+}
+
+.gh-review-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--body-text);
+  line-height: 1.7;
+  flex: 1;
+  font-style: italic;
+}
+
+.gh-review-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--divider);
+  padding-top: 1rem;
+}
+
+.gh-review-author {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--deep-earth);
+}
+
+.gh-review-badge {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sage);
+  background: rgba(107, 127, 94, 0.12);
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+}
+
+.gh-reviews__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.gh-reviews__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--divider);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.gh-reviews__dot.active {
+  background: var(--gold);
+  transform: scale(1.3);
+}
+
+/* =============================================================
+   CTA Banner
+   ============================================================= */
+.gh-cta-banner {
+  position: relative;
+  overflow: hidden;
+  padding: calc(var(--section-padding) * 1.5) 2rem;
+  text-align: center;
+}
+
+.gh-cta-banner__bg {
+  position: absolute;
+  inset: -20%;
+  background-image: url("background-linen.png");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.gh-cta-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 36, 24, 0.55);
+}
+
+.gh-cta-banner__content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.gh-cta-banner__eyebrow {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.gh-cta-banner__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--white);
+  margin: 0;
+  line-height: 1.15;
+}
+
+.gh-cta-banner__subtext {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.gh-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--gold);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--radius-btn);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 16px rgba(196, 149, 42, 0.4);
+}
+
+.gh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(196, 149, 42, 0.5);
+  background: #b5861f;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.gh-btn--outline {
+  background: transparent;
+  border: 2px solid var(--white);
+  color: var(--white);
+  box-shadow: none;
+}
+
+.gh-btn--outline:hover {
+  background: var(--white);
+  color: var(--deep-earth);
+  box-shadow: none;
+}
+
+/* =============================================================
+   Scroll Animations
+   ============================================================= */
+.gh-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.gh-fade-up.gh-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gh-fade-scale {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.gh-fade-scale.gh-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gh-stagger-1 { transition-delay: 0.05s; }
+.gh-stagger-2 { transition-delay: 0.15s; }
+.gh-stagger-3 { transition-delay: 0.25s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-fade-up,
+  .gh-fade-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* =============================================================
+   Announcement Bar Override
+   ============================================================= */
+.announcement-bar {
+  background: var(--deep-earth) !important;
+  color: var(--white) !important;
+}
+
+.announcement-bar__message {
+  color: var(--white) !important;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.announcement-bar a {
+  color: var(--gold) !important;
+}
+
+/* =============================================================
+   Header Overrides
+   ============================================================= */
+.header {
+  font-family: var(--font-body) !important;
+}
+
+.header__heading-logo,
+.header__heading-link {
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+  font-size: 1.4rem !important;
+  color: var(--deep-earth) !important;
+  letter-spacing: 0.02em;
+}
+
+header-drawer .header__icon,
+.header__icon {
+  color: var(--deep-earth);
+}
+
+/* =============================================================
+   Footer
+   ============================================================= */
+.gh-footer {
+  background: var(--deep-earth);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 5rem 2rem 2rem;
+  font-family: var(--font-body);
+}
+
+.gh-footer__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.gh-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gh-footer__logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.gh-footer__tagline {
+  font-family: var(--font-accent);
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.gh-footer__desc {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.65);
+  max-width: 280px;
+}
+
+.gh-footer__newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.gh-footer__newsletter-input {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-btn);
+  padding: 0.65rem 1rem;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.gh-footer__newsletter-input::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+.gh-footer__newsletter-input:focus {
+  border-color: var(--gold);
+}
+
+.gh-footer__newsletter-btn {
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-btn);
+  padding: 0.65rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.gh-footer__newsletter-btn:hover {
+  background: #b5861f;
+}
+
+.gh-footer__col-title {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  margin: 0 0 1.25rem;
+}
+
+.gh-footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gh-footer__links a {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.gh-footer__links a:hover {
+  color: var(--gold);
+}
+
+.gh-footer__bottom {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.gh-footer__copy {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.gh-footer__badges {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.gh-footer__cert {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+}
+
+@media (max-width: 900px) {
+  .gh-footer__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .gh-footer__brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 520px) {
+  .gh-footer__inner { grid-template-columns: 1fr; }
+  .gh-footer__bottom { flex-direction: column; align-items: flex-start; }
+}
+
+/* =============================================================
+   Product Page Enhancements
+   ============================================================= */
+.gh-product-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+}
+
+.gh-badge-save {
+  background: rgba(107, 127, 94, 0.15);
+  color: var(--sage);
+}
+
+.gh-badge-best {
+  background: rgba(196, 149, 42, 0.15);
+  color: var(--gold);
+}
+
+/* =============================================================
+   Sliding link underline
+   ============================================================= */
+.gh-link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.gh-link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background: var(--gold);
+  transition: width 0.25s ease;
+}
+
+.gh-link-underline:hover::after {
+  width: 100%;
+}
+
+/* =============================================================
+   Smooth page transitions
+   ============================================================= */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (view-transition-name: none) {
+    ::view-transition-old(root) {
+      animation: 200ms ease-out both gh-slide-out;
+    }
+    ::view-transition-new(root) {
+      animation: 300ms ease-in both gh-slide-in;
+    }
+    @keyframes gh-slide-out {
+      to { opacity: 0; transform: translateY(-8px); }
+    }
+    @keyframes gh-slide-in {
+      from { opacity: 0; transform: translateY(8px); }
+    }
+  }
+}
+
+/* =============================================================
+   Utility
+   ============================================================= */
+.gh-divider {
+  border: none;
+  border-top: 1px solid var(--divider);
+  margin: 0;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+}

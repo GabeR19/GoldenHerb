@@ -1,0 +1,92 @@
+<footer class="gh-footer" role="contentinfo">
+  <div class="gh-footer__inner">
+    <!-- Brand Column -->
+    <div class="gh-footer__brand">
+      <div>
+        <div class="gh-footer__logo">Golden Herb Co.</div>
+        <div class="gh-footer__tagline">Ancient Remedies. Modern Glow.</div>
+      </div>
+      <p class="gh-footer__desc">
+        Handcrafted turmeric &amp; kojic acid soap that brightens skin, fades dark spots, and nourishes naturally. Made in small batches with plant-powered ingredients.
+      </p>
+      <div>
+        <p style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.7);margin:0 0 0.6rem;text-transform:uppercase;letter-spacing:0.1em;">Join the Herb Fam</p>
+        <form class="gh-footer__newsletter-form" action="/contact#contact_form" method="post" accept-charset="UTF-8">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <label for="gh-newsletter-email" class="visually-hidden">Email address</label>
+          <input
+            type="email"
+            id="gh-newsletter-email"
+            name="contact[email]"
+            class="gh-footer__newsletter-input"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+          >
+          <button type="submit" class="gh-footer__newsletter-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Shop Column -->
+    <div>
+      <h3 class="gh-footer__col-title">Shop</h3>
+      <ul class="gh-footer__links">
+        <li><a href="/collections/all">All Products</a></li>
+        <li><a href="/products/turmeric-brightening-soap">Turmeric Brightening Soap</a></li>
+        <li><a href="/collections/all?sort_by=best-selling">Best Sellers</a></li>
+        <li><a href="/cart">Cart</a></li>
+      </ul>
+    </div>
+
+    <!-- Info Column -->
+    <div>
+      <h3 class="gh-footer__col-title">Info</h3>
+      <ul class="gh-footer__links">
+        <li><a href="/pages/about">About Us</a></li>
+        <li><a href="/pages/ingredients">Our Ingredients</a></li>
+        <li><a href="/pages/shipping">Shipping &amp; Returns</a></li>
+        <li><a href="/pages/faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <!-- Support Column -->
+    <div>
+      <h3 class="gh-footer__col-title">Support</h3>
+      <ul class="gh-footer__links">
+        <li><a href="/pages/contact">Contact Us</a></li>
+        <li><a href="mailto:support@goldenherbco.com">support@goldenherbco.com</a></li>
+        <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/pages/terms-of-service">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="gh-footer__bottom">
+    <p class="gh-footer__copy">
+      &copy; {{ 'now' | date: '%Y' }} Golden Herb Co. All rights reserved.
+    </p>
+    <div class="gh-footer__badges">
+      <span class="gh-footer__cert">Vegan</span>
+      <span class="gh-footer__cert">Paraben-Free</span>
+      <span class="gh-footer__cert">Sulfate-Free</span>
+      <span class="gh-footer__cert">All Natural</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "GH Footer",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "GH Footer"
+    }
+  ]
+}
+{% endschema %}

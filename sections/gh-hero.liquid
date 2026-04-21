@@ -1,0 +1,83 @@
+<section class="gh-hero">
+  <div class="gh-hero__inner">
+    <div class="gh-hero__content">
+      <p class="gh-hero__eyebrow gh-fade-up">Ancient Remedies. Modern Glow.</p>
+
+      <h1 class="gh-hero__heading gh-fade-up gh-stagger-1">
+        Your Skin Deserves<br>Better Than Chemicals
+      </h1>
+
+      <p class="gh-hero__subheading gh-fade-up gh-stagger-2">
+        Handcrafted with turmeric &amp; kojic acid to reveal your natural glow. Plant-powered. Naturally derived. Made for every skin type.
+      </p>
+
+      <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="gh-hero__cta gh-fade-up gh-stagger-3">
+        {{ section.settings.cta_label | default: 'Shop Our Soap' }}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <div class="gh-hero__trust gh-fade-up">
+        <span class="gh-hero__trust-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1l1.5 4.5H13l-3.8 2.8 1.5 4.5L7 10 3.3 12.8l1.5-4.5L1 5.5h4.5L7 1z" fill="currentColor"/>
+          </svg>
+          All Natural
+        </span>
+        <span class="gh-hero__trust-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M4.5 7l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Vegan &amp; Cruelty-Free
+        </span>
+        <span class="gh-hero__trust-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 1.5C4 1.5 1.5 4 1.5 7S4 12.5 7 12.5 12.5 10 12.5 7 10 1.5 7 1.5z" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M5 7.5c.5 1 1 1.5 2 1.5s1.5-.5 2-1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          For All Skin Types
+        </span>
+      </div>
+    </div>
+
+    <div class="gh-hero__image-wrap gh-fade-scale">
+      <img
+        src="{{ 'hero-banner.png' | asset_url }}"
+        alt="Golden Herb Co. Turmeric Brightening Soap bar on marble with fresh turmeric root and green herbs"
+        class="gh-hero__image"
+        width="500"
+        height="600"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GH Hero",
+  "tag": "section",
+  "class": "gh-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Button Text",
+      "default": "Shop Our Soap"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "GH Hero"
+    }
+  ]
+}
+{% endschema %}

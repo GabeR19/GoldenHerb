@@ -15,12 +15,20 @@
       "type": "gh-why",
       "settings": {}
     },
+    "gh_how_to_use": {
+      "type": "gh-how-to-use",
+      "settings": {}
+    },
     "gh_ingredients": {
       "type": "gh-ingredients",
       "settings": {}
     },
     "gh_reviews": {
       "type": "gh-reviews",
+      "settings": {}
+    },
+    "gh_before_after": {
+      "type": "gh-before-after",
       "settings": {}
     },
     "gh_cta_banner": {
@@ -35,8 +43,10 @@
     "gh_hero",
     "gh_trust_bar",
     "gh_why",
+    "gh_how_to_use",
     "gh_ingredients",
     "gh_reviews",
+    "gh_before_after",
     "gh_cta_banner"
   ]
 }

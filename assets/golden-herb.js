@@ -244,6 +244,196 @@ const GH = {
       });
     });
   },
+
+  /* -----------------------------------------------------------
+     Product Gallery — thumbnail navigation + zoom on hover
+  ----------------------------------------------------------- */
+  productGallery() {
+    const gallery = document.getElementById('gh-gallery');
+    if (!gallery) return;
+
+    const slides = gallery.querySelectorAll('.gh-product__gallery-slide');
+    const thumbs = gallery.querySelectorAll('.gh-product__thumb');
+    if (!slides.length) return;
+
+    // Thumbnail click navigation
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const index = parseInt(thumb.dataset.index, 10);
+
+        slides.forEach((s) => s.classList.remove('gh-active'));
+        thumbs.forEach((t) => {
+          t.classList.remove('gh-active');
+          t.setAttribute('aria-current', 'false');
+        });
+
+        if (slides[index]) slides[index].classList.add('gh-active');
+        thumb.classList.add('gh-active');
+        thumb.setAttribute('aria-current', 'true');
+      });
+    });
+
+    // Zoom on hover — track mouse position
+    const zoomWraps = gallery.querySelectorAll('.gh-product__zoom-wrap');
+    zoomWraps.forEach((wrap) => {
+      wrap.addEventListener('mousemove', (e) => {
+        const rect = wrap.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        wrap.style.setProperty('--zoom-x', x + '%');
+        wrap.style.setProperty('--zoom-y', y + '%');
+      });
+
+      wrap.addEventListener('mouseleave', () => {
+        wrap.style.removeProperty('--zoom-x');
+        wrap.style.removeProperty('--zoom-y');
+      });
+    });
+  },
+
+  /* -----------------------------------------------------------
+     Quantity Selector — +/- buttons
+  ----------------------------------------------------------- */
+  quantitySelector() {
+    const qtyBtns = document.querySelectorAll('.gh-product__qty-btn');
+    if (!qtyBtns.length) return;
+
+    qtyBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const wrap = btn.closest('.gh-product__quantity-wrap');
+        if (!wrap) return;
+        const input = wrap.querySelector('.gh-product__qty-input');
+        if (!input) return;
+
+        let val = parseInt(input.value, 10) || 1;
+        const min = parseInt(input.min, 10) || 1;
+        const max = parseInt(input.max, 10) || 99;
+        const action = btn.dataset.qtyAction;
+
+        if (action === 'minus' && val > min) {
+          val--;
+        } else if (action === 'plus' && val < max) {
+          val++;
+        }
+
+        input.value = val;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    });
+  },
+
+  /* -----------------------------------------------------------
+     Product Accordion — uses native <details>, enhance a11y
+  ----------------------------------------------------------- */
+  productAccordion() {
+    const accordion = document.getElementById('gh-accordion');
+    if (!accordion) return;
+
+    // Optional: close other panels when one opens (exclusive mode)
+    const details = accordion.querySelectorAll('details');
+    details.forEach((detail) => {
+      detail.addEventListener('toggle', () => {
+        if (detail.open) {
+          details.forEach((other) => {
+            if (other !== detail && other.open) {
+              other.removeAttribute('open');
+            }
+          });
+        }
+      });
+    });
+  },
+
+  /* -----------------------------------------------------------
+     Urgency Counters — animated viewer count fluctuation
+  ----------------------------------------------------------- */
+  urgencyCounters() {
+    const viewingEl = document.getElementById('gh-viewing-count');
+    if (!viewingEl) return;
+    if (this.prefersReducedMotion) return;
+
+    const baseCount = parseInt(viewingEl.dataset.count, 10) || 127;
+    let current = baseCount;
+
+    // Fluctuate the count periodically
+    setInterval(() => {
+      const change = Math.floor(Math.random() * 7) - 3; // -3 to +3
+      current = Math.max(baseCount - 15, Math.min(baseCount + 15, current + change));
+      viewingEl.textContent = current;
+    }, 3000);
+  },
+
+  /* -----------------------------------------------------------
+     Shipping Progress Bar — calculate toward free shipping
+  ----------------------------------------------------------- */
+  shippingProgress() {
+    const bar = document.getElementById('gh-shipping-bar');
+    if (!bar) return;
+
+    const threshold = parseInt(bar.dataset.threshold, 10) || 3000; // in cents
+    const fill = document.getElementById('gh-shipping-fill');
+    const text = document.getElementById('gh-shipping-text');
+    if (!fill || !text) return;
+
+    const updateBar = () => {
+      // Get current cart total from Shopify
+      fetch('/cart.js')
+        .then((r) => r.json())
+        .then((cart) => {
+          const total = cart.total_price || 0;
+          const pct = Math.min((total / threshold) * 100, 100);
+          fill.style.width = pct + '%';
+
+          if (total >= threshold) {
+            text.innerHTML = '<strong>You\'ve unlocked FREE shipping!</strong> &#127881;';
+          } else {
+            const remaining = (threshold - total) / 100;
+            text.innerHTML = 'You\'re <strong>$' + remaining.toFixed(2) + '</strong> away from <strong>FREE shipping!</strong>';
+          }
+        })
+        .catch(() => {
+          // Silent fail — bar stays as default
+        });
+    };
+
+    // Run on load
+    updateBar();
+
+    // Listen for cart updates (Shopify PubSub or custom event)
+    document.addEventListener('cart:updated', updateBar);
+  },
+
+  /* -----------------------------------------------------------
+     Mobile Sticky Bar — show when add-to-cart scrolls out of view
+  ----------------------------------------------------------- */
+  productStickyBar() {
+    const stickyBar = document.getElementById('gh-sticky-bar');
+    const addBtn = document.querySelector('.gh-product__add-btn');
+    if (!stickyBar || !addBtn) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            stickyBar.classList.add('gh-visible');
+          } else {
+            stickyBar.classList.remove('gh-visible');
+          }
+        });
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(addBtn);
+  },
 };
 
-document.addEventListener('DOMContentLoaded', () => GH.init());
+document.addEventListener('DOMContentLoaded', () => {
+  GH.init();
+  GH.productGallery();
+  GH.quantitySelector();
+  GH.productAccordion();
+  GH.urgencyCounters();
+  GH.shippingProgress();
+  GH.productStickyBar();
+});

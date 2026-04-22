@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "gh-product": {
+      "type": "gh-product",
+      "settings": {
+        "short_description": "Our bestselling turmeric & kojic acid brightening soap visibly fades dark spots, evens skin tone, and reveals your natural radiance — in as little as 2 weeks.",
+        "show_dynamic_checkout": true,
+        "free_shipping_threshold": 30
+      }
+    },
+    "gh-reviews": {
+      "type": "gh-reviews",
+      "settings": {}
+    }
+  },
+  "order": [
+    "gh-product",
+    "gh-reviews"
+  ]
+}

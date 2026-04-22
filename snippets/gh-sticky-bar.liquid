@@ -1,0 +1,50 @@
+<div id="gh-sticky-bar" class="gh-sticky-bar" role="complementary" aria-label="Quick shop bar">
+  <div class="gh-sticky-bar__inner">
+    <div class="gh-sticky-bar__info">
+      <span class="gh-sticky-bar__name">Turmeric &amp; Kojic Acid Brightening Soap</span>
+      <span class="gh-sticky-bar__price">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros | default: '$14.99' }}</span>
+    </div>
+    <a href="/collections/all" class="gh-sticky-bar__btn">Add to Cart</a>
+    <button class="gh-sticky-bar__close" aria-label="Dismiss shop bar" type="button">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var bar = document.getElementById('gh-sticky-bar');
+    if (!bar) return;
+
+    var closeBtn = bar.querySelector('.gh-sticky-bar__close');
+    var dismissed = false;
+    var heroHeight = 0;
+
+    function getHeroHeight() {
+      var hero = document.querySelector('.gh-hero');
+      return hero ? hero.offsetHeight : 600;
+    }
+
+    function onScroll() {
+      if (dismissed) return;
+      heroHeight = getHeroHeight();
+      if (window.scrollY > heroHeight) {
+        bar.classList.add('gh-sticky-bar--visible');
+      } else {
+        bar.classList.remove('gh-sticky-bar--visible');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        dismissed = true;
+        bar.classList.remove('gh-sticky-bar--visible');
+        bar.classList.add('gh-sticky-bar--dismissed');
+      });
+    }
+  })();
+</script>
